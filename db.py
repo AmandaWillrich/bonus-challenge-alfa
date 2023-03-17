@@ -33,15 +33,15 @@ class ConnectDb:
         try:
             cursor.execute(sql)
             self.connection.commit()
+            print(
+                f'O CNPJ {company.cnpj} foi'
+                f'inserido com sucesso na base de dados!'
+            )
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error: %s" % error)
             self.connection.rollback()
             cursor.close()
-            return 1
         cursor.close()
-        print(
-            f'O CNPJ {company.cnpj} foi inserido com sucesso na base de dados!'
-        )
 
     def close_connection(self):
         self.connection.close()
